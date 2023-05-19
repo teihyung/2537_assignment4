@@ -1,3 +1,11 @@
+let dark = false;
+
+function toggleMode() {
+  const bodyElement = document.getElementById("game_grid");
+  dark = !dark;
+  bodyElement.style.backgroundColor = dark ? "#000000" : "#FFFFFF";
+}
+
 $(document).ready(() => {
   const easyCardsCount = 6;
   const easyMatches = 3;
@@ -36,6 +44,7 @@ $(document).ready(() => {
           clearInterval(timer);
           $(".game-grid").hide();
           alert("game over")
+          location.reload(); // Reload the page
         }
       }, 1000);
     };
@@ -53,7 +62,8 @@ $(document).ready(() => {
           console.log("match");
           matchCount++;
           numberOfPairLeft--;
-          $(this).off("click");
+          firstCard.parent().off("click");
+          secondCard.parent().off("click");
           if (matchCount === totalMatches) {
             alert("You win!");
           }
@@ -97,6 +107,7 @@ $(document).ready(() => {
           clearInterval(timer);
           $(".game-grid").hide();
           alert("game over")
+          location.reload(); // Reload the page
         }
       }, 1000);
     };
@@ -120,7 +131,9 @@ $(document).ready(() => {
           console.log("match");
           matchCount++;
           numberOfPairLeft--;
-          $(this).off("click");
+          firstCard.parent().off("click");
+          secondCard.parent().off("click");
+
           firstCard.parent().attr("data-matched", "true");
           secondCard.parent().attr("data-matched", "true");
           if (matchCount === totalMatches) {
@@ -171,6 +184,8 @@ $(document).ready(() => {
         if (timeLeft === 0) {
           clearInterval(timer);
           $(".game-grid").hide();
+          alert("game over")
+          location.reload(); // Reload the page
         }
       }, 1000);
     };
@@ -188,7 +203,8 @@ $(document).ready(() => {
           console.log("match");
           matchCount++;
           numberOfPairLeft--;
-          $(this).off("click");
+          firstCard.parent().off("click");
+          secondCard.parent().off("click");
           firstCard.parent().attr("data-matched", "true");
           secondCard.parent().attr("data-matched", "true");
           if (matchCount === totalMatches) {

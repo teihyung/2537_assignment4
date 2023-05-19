@@ -12,6 +12,10 @@ body {
   --cards-per-row: 3;
 }
 
+.dark-mode {
+  background-color: black;
+}
+
 .card {
   width: calc(95% / var(--cards-per-row));
   padding-bottom: calc(95% / var(--cards-per-row));

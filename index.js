@@ -1,5 +1,10 @@
 let dark = false;
 
+
+document.getElementById("startButton").addEventListener("click", function() {
+  document.getElementById("startButton").style.display = "none";
+});
+
 function toggleMode() {
   const bodyElement = document.getElementById("game_grid");
   dark = !dark;
@@ -13,6 +18,7 @@ $(document).ready(() => {
   const mediumMatches = 6;
   const hardCardsCount = 24;
   const hardMatches = 12;
+  let gameOver = false;
 
 
   // 게임 정보 업데이트
@@ -46,6 +52,9 @@ $(document).ready(() => {
           alert("game over")
           location.reload(); // Reload the page
         }
+        if (matchCount === totalMatches) {
+          clearInterval(timer);
+        }
       }, 1000);
     };
 
@@ -65,6 +74,7 @@ $(document).ready(() => {
           firstCard.parent().off("click");
           secondCard.parent().off("click");
           if (matchCount === totalMatches) {
+            gameOver = true;
             alert("You win!");
           }
           updateGameInfo();
@@ -109,6 +119,10 @@ $(document).ready(() => {
           alert("game over")
           location.reload(); // Reload the page
         }
+        if (matchCount === totalMatches) {
+          gameOver = true;
+          clearInterval(timer);
+        }
       }, 1000);
     };
 
@@ -137,6 +151,7 @@ $(document).ready(() => {
           firstCard.parent().attr("data-matched", "true");
           secondCard.parent().attr("data-matched", "true");
           if (matchCount === totalMatches) {
+            gameOver = true;
             alert("You win!");
           }
           updateGameInfo();
@@ -186,6 +201,10 @@ $(document).ready(() => {
           $(".game-grid").hide();
           alert("game over")
           location.reload(); // Reload the page
+        }
+        if (matchCount === totalMatches) {
+          gameOver = true;
+          clearInterval(timer);
         }
       }, 1000);
     };
@@ -280,6 +299,9 @@ $(document).ready(() => {
     }
 
     const flipAllCards = () => {
+      if(gameOver === true){
+        return;
+      }
       alert("Power up!");
 
       $(".card").each(function () {
@@ -298,7 +320,7 @@ $(document).ready(() => {
     };
 
     if (selectedDifficulty !== "easy") {
-      setInterval(flipAllCards, 12000);
+        setInterval(flipAllCards, 12000);
     }
 
     const cardPositions = Array.from({ length: totalCardsCount }, (_, index) => index);

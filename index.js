@@ -34,6 +34,7 @@ $(document).ready(() => {
     let timer;
 
     const updateGameInfo = () => {
+      $("#totalPair").text(easyMatches);
       $("#pairCount").text(numberOfPairLeft);
       $("#matchCount").text(matchCount);
       $("#clickCount").text(flip);
@@ -127,6 +128,7 @@ $(document).ready(() => {
     };
 
     const updateGameInfo = () => {
+      $("#totalPair").text(mediumMatches);
       $("#pairCount").text(numberOfPairLeft);
       $("#matchCount").text(matchCount);
       $("#clickCount").text(flip);
@@ -183,6 +185,7 @@ $(document).ready(() => {
     let secondCard = undefined;
 
     const updateGameInfo = () => {
+      $("#totalPair").text(hardMatches);
       $("#pairCount").text(numberOfPairLeft);
       $("#matchCount").text(matchCount);
       $("#clickCount").text(flip);
